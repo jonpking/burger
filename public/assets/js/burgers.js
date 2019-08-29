@@ -1,60 +1,40 @@
-$(function() {
-    $(".change-sleep").on("click", function(event) {
-      var id = $(this).data("id");
-      var newSleep = $(this).data("newsleep");
-  
-      var newSleepState = {
-        sleepy: newSleep
-      };
-  
-      // Send the PUT request.
-      $.ajax("/api/cats/" + id, {
-        type: "PUT",
-        data: newSleepState
-      }).then(
-        function() {
-          console.log("changed sleep to", newSleep);
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-  
-    $(".create-form").on("submit", function(event) {
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault();
-  
-      var newCat = {
-        name: $("#ca").val().trim(),
-        sleepy: $("[name=sleepy]:checked").val().trim()
-      };
-  
-      // Send the POST request.
-      $.ajax("/api/cats", {
-        type: "POST",
-        data: newCat
-      }).then(
-        function() {
-          console.log("created new cat");
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-  
-    $(".delete-cat").on("click", function(event) {
-      var id = $(this).data("id");
-  
-      // Send the DELETE request.
-      $.ajax("/api/cats/" + id, {
-        type: "DELETE"
-      }).then(
-        function() {
-          console.log("deleted cat", id);
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
+$(function () {
+  $(".eat-burger").on("click", function (event) {
+    const id = $(this).data("id");
+    const burgerEaten = $(this).data("devoured");
+    const burgerEatenState = {
+      devoured: burgerEaten
+    };
+
+    // Send the PUT request.
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: burgerEatenState
+    }).then(
+      function() {
+        window.location.reload();
+      }
+    );
   });
-  
+
+  $(".add-burger").on("submit", function (event) {
+    event.preventDefault();
+
+    const newBurger = {
+      burger_name: $("#newBurgerTextBox").val().trim(),
+      devoured: false
+    };
+
+    // Send the POST request.
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("something");
+        location.reload();
+      }
+    );
+  });
+
+});
