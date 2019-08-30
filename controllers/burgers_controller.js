@@ -18,6 +18,8 @@ module.exports = function (app) {
     });
 
     app.put("/api/burgers/:id", function (req, res) {
-        burger.update("devoured", true, "burger_name", req.params.id);
+        console.log(req.params.id)
+        burger.update("devoured", true, "id", req.params.id);
+        res.end();
     });
 }

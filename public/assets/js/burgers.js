@@ -12,6 +12,7 @@ $(function () {
       data: burgerEatenState
     }).then(
       function() {
+        console.log("done")
         window.location.reload();
       }
     );
@@ -30,9 +31,9 @@ $(function () {
       type: "POST",
       data: newBurger
     }).then(
-      function() {
+      function(res) {
         console.log("something");
-        location.reload();
+        window.location.reload();
       }
     );
   });
