@@ -24,9 +24,9 @@ const orm = {
         // let values = colAndValArray.values().join(", ");
         // let whereColumns = whereSelector.keys().join(", ");
         // let whereValues = whereSelector.values().join(", ");
-        const queryString = "UPDATE ?? SET ?? = ? WHERE ? = ?";
+        const queryString = `UPDATE ${tableInput} SET ${columnInput} = ${valueInput} WHERE ${whereColumn} = ${whereValue}`;
         console.log(queryString);
-        connection.query(queryString, [tableInput, columnInput, valueInput, whereColumn, whereValue], function (err, result) {
+        connection.query(queryString, function (err, result) {
             if (err) throw err;
             cb(result);
         });

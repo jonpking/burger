@@ -19,7 +19,8 @@ module.exports = function (app) {
 
     app.put("/api/burgers/:id", function (req, res) {
         console.log(req.params.id)
-        burger.update("devoured", true, "id", req.params.id);
-        res.end();
+        burger.update("devoured", true, "id", req.params.id, function(results) {
+            res.end();
+        });
     });
 }
